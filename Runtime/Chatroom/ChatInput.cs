@@ -1,21 +1,34 @@
-using Players;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Multiplayer.Chatroom
 {
-    public class ChatInputField : MonoBehaviour
+    public class ChatInput : MonoBehaviour
     {
+        [SerializeField] public string author;
+        [Space]
         [SerializeField] private ChatManager manager;
         [SerializeField] private InputField inputField;
+        [SerializeField] private Button submitButton;
 
         private void OnValidate()
         {
             if (!manager) manager = GetComponentInParent<ChatManager>();
-            if (!inputField) inputField = GetComponent<InputField>();
+            if (!inputField) inputField = GetComponentInChildren<InputField>();
+            if (!submitButton) submitButton = GetComponentInChildren<Button>();
         }
     
         private void Awake() => OnValidate();
+
+        private void OnEnable()
+        {
+            if (submitButton) submitButton.onClick.AddListener(Submit);
+        }
+
+        private void OnDisable()
+        {
+            if (submitButton) submitButton.onClick.RemoveListener(Submit);
+        }
 
         private void Update()
         {
@@ -26,8 +39,9 @@ namespace Multiplayer.Chatroom
         public void Submit()
         {
             if (!manager || string.IsNullOrWhiteSpace(inputField.text)) return;
-            manager.AddMessageServerRpc(PlayersManager.LocalPlayer.DisplayName, inputField.text);
+            manager.AddMessageServerRpc(author, inputField.text);
             inputField.text = string.Empty;
+            inputField.Select();
         }
     }
 }

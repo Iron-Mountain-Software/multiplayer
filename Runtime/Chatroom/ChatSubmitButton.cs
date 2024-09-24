@@ -5,7 +5,7 @@ namespace Multiplayer.Chatroom
 {
     public class ChatSubmitButton : MonoBehaviour
     {
-        [SerializeField] private ChatInputField inputField;
+        [SerializeField] private ChatInput inputField;
         [SerializeField] private Button button;
         
         private void OnValidate()

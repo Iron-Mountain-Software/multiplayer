@@ -27,12 +27,16 @@ namespace Multiplayer.Chatroom
 
         private void OnEnable()
         {
-            if (manager) manager.OnMessageAdded += AddMessage;
+            if (!manager) return;
+            manager.OnMessageAdded += AddMessage;
+            manager.OnAlertAdded += AddAlert;
         }
 
         private void OnDisable()
         {
-            if (manager) manager.OnMessageAdded -= AddMessage;
+            if (!manager) return;
+            manager.OnMessageAdded -= AddMessage;
+            manager.OnAlertAdded -= AddAlert;
         }
 
         private void OnGUI()

@@ -15,13 +15,14 @@
     "type": "git",
     "url": "git+https://github.com/Iron-Mountain-Software/conditions.git"
   },
-  "description": "Tools for Unity Multiplayer",
+  "description": "Systems and tools for Unity NGO multiplayer.",
   "useCases": [],
   "instructions": [],
   "keywords": [],
   "sources": [],
   "dependencies": {
     "com.unity.multiplayer.tools": "1.1.1",
-    "com.unity.netcode.gameobjects": "1.9.1"
+    "com.unity.netcode.gameobjects": "1.9.1",
+    "com.unity.services.relay": "1.1.1"
   }
 }
