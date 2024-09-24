@@ -1,12 +1,11 @@
+using IronMountain.Multiplayer.Players;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Multiplayer.Chatroom
+namespace IronMountain.Multiplayer.Chatroom
 {
     public class ChatInput : MonoBehaviour
     {
-        [SerializeField] public string author;
-        [Space]
         [SerializeField] private ChatManager manager;
         [SerializeField] private InputField inputField;
         [SerializeField] private Button submitButton;
@@ -38,7 +37,8 @@ namespace Multiplayer.Chatroom
 
         public void Submit()
         {
-            if (!manager || string.IsNullOrWhiteSpace(inputField.text)) return;
+            if (!manager || !inputField || string.IsNullOrWhiteSpace(inputField.text)) return;
+            string author = PlayersManager.LocalPlayer ? PlayersManager.LocalPlayer.DisplayName : string.Empty;
             manager.AddMessageServerRpc(author, inputField.text);
             inputField.text = string.Empty;
             inputField.Select();

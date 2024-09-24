@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Multiplayer.Chatroom
+namespace IronMountain.Multiplayer.Chatroom
 {
     public class ChatDisplay : MonoBehaviour
     {
@@ -15,7 +14,7 @@ namespace Multiplayer.Chatroom
         [SerializeField] private RectTransform parent;
         [SerializeField] private ScrollRect scrollView;
 
-        private bool _shouldRebuild = false;
+        private bool _shouldRebuild;
         
         private void OnValidate()
         {

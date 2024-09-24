@@ -1,5 +1,4 @@
 using System;
-using System.Net.Http;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
@@ -10,7 +9,7 @@ using Unity.Services.Relay.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Multiplayer
+namespace IronMountain.Multiplayer
 {
     public class RelayManager : MonoBehaviour
     {

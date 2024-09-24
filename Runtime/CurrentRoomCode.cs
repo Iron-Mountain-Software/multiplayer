@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Multiplayer
+namespace IronMountain.Multiplayer
 {
     public class CurrentRoomCode : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 using System;
 using Unity.Netcode;
 
-namespace Multiplayer.Chatroom
+namespace IronMountain.Multiplayer.Chatroom
 {
     public class ChatManager : NetworkBehaviour
     {
