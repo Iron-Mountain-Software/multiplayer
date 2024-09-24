@@ -1,6 +1,6 @@
 {
   "name": "com.iron-mountain.multiplayer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "displayName": "Multiplayer",
   "author": "Chris Monteferrante <chris@axcelsius.com>",
   "unity": "2019.1",
@@ -23,6 +23,7 @@
   "dependencies": {
     "com.unity.multiplayer.tools": "1.1.1",
     "com.unity.netcode.gameobjects": "1.9.1",
-    "com.unity.services.relay": "1.1.1"
+    "com.unity.services.relay": "1.1.1",
+    "com.unity.transport": "2.3.0"
   }
 }
