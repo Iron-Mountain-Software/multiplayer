@@ -78,12 +78,12 @@ namespace IronMountain.Multiplayer.Clients
             Transform parent = GetParent(client);
             if (!prefab || !parent) return null;
             display = Instantiate(prefab, parent);
-            display.Client = client;
             if (Displays.ContainsKey(client))
             {
                 Displays[client] = display;
             }
             else Displays.Add(client, display);
+            display.Client = client;
             return display;
         }
 
