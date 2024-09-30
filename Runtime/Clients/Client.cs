@@ -2,9 +2,9 @@ using System;
 using Unity.Collections;
 using Unity.Netcode;
 
-namespace IronMountain.Multiplayer.Players
+namespace IronMountain.Multiplayer.Clients
 {
-    public class Player : NetworkBehaviour
+    public class Client : NetworkBehaviour
     {
         public event Action OnDisplayNameChanged;
         private void InvokeOnDisplayNameChanged(FixedString64Bytes oldName, FixedString64Bytes nemName) =>
@@ -20,26 +20,27 @@ namespace IronMountain.Multiplayer.Players
         private void RefreshName()
         {
             if (!IsLocalPlayer) return;
-            _displayName.Value = LocalPlayerPrefs.LocalPlayerNameSet 
-                ? LocalPlayerPrefs.LocalPlayerName 
+            _displayName.Value = LocalClientPrefs.DisplayNameSet 
+                ? LocalClientPrefs.DisplayName 
                 : name;
         }
         
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
-            name = "Player " + OwnerClientId;
+            name = "Client " + OwnerClientId;
             _displayName.OnValueChanged += InvokeOnDisplayNameChanged;
-            if (IsLocalPlayer) LocalPlayerPrefs.OnLocalPlayerNameChanged += RefreshName;
+            if (IsLocalPlayer) LocalClientPrefs.OnLocalClientNameChanged += RefreshName;
             RefreshName();
-            PlayersManager.Register(this);
+            ClientsManager.Register(this);
         }
+        
         public override void OnNetworkDespawn()
         {
             base.OnNetworkDespawn();
-            PlayersManager.Unregister(this);
+            ClientsManager.Unregister(this);
             _displayName.OnValueChanged -= InvokeOnDisplayNameChanged;
-            if (IsLocalPlayer) LocalPlayerPrefs.OnLocalPlayerNameChanged -= RefreshName;
+            if (IsLocalPlayer) LocalClientPrefs.OnLocalClientNameChanged -= RefreshName;
         }
     }
 }

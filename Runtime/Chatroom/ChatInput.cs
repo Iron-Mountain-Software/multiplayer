@@ -1,4 +1,4 @@
-using IronMountain.Multiplayer.Players;
+using IronMountain.Multiplayer.Clients;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,7 +38,7 @@ namespace IronMountain.Multiplayer.Chatroom
         public void Submit()
         {
             if (!manager || !inputField || string.IsNullOrWhiteSpace(inputField.text)) return;
-            string author = PlayersManager.LocalPlayer ? PlayersManager.LocalPlayer.DisplayName : string.Empty;
+            string author = ClientsManager.LocalClient ? ClientsManager.LocalClient.DisplayName : string.Empty;
             manager.AddMessageServerRpc(author, inputField.text);
             inputField.text = string.Empty;
             inputField.Select();

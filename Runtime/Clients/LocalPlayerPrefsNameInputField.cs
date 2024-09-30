@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace IronMountain.Multiplayer.Players
+namespace IronMountain.Multiplayer.Clients
 {
     public class LocalPlayerPrefsNameInputField : MonoBehaviour
     {
@@ -17,8 +17,8 @@ namespace IronMountain.Multiplayer.Players
         private void OnEnable()
         {
             if (!inputField) return;
-            inputField.text = LocalPlayerPrefs.LocalPlayerNameSet 
-                ? LocalPlayerPrefs.LocalPlayerName
+            inputField.text = LocalClientPrefs.DisplayNameSet 
+                ? LocalClientPrefs.DisplayName
                 : string.Empty;
             inputField.onValueChanged.AddListener(OnValueChanged);
         }
@@ -31,7 +31,7 @@ namespace IronMountain.Multiplayer.Players
 
         private void OnValueChanged(string value)
         {
-            LocalPlayerPrefs.LocalPlayerName = value;
+            LocalClientPrefs.DisplayName = value;
         }
     }
 }
