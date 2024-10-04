@@ -50,7 +50,7 @@ namespace IronMountain.Multiplayer.Clients
             List<Client> playersToRemove = new List<Client>();
             foreach (KeyValuePair<Client, ClientDisplay> entry in Displays)
             {
-                if (ClientsManager.Clients.Contains(entry.Key)) return;
+                if (ClientsManager.Clients.Contains(entry.Key)) continue;
                 playersToRemove.Add(entry.Key);
             }
             foreach (Client client in playersToRemove)
