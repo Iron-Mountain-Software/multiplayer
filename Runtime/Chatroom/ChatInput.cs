@@ -9,7 +9,8 @@ namespace IronMountain.Multiplayer.Chatroom
         [SerializeField] private ChatManager manager;
         [SerializeField] private InputField inputField;
         [SerializeField] private Button submitButton;
-
+        [SerializeField] private bool refocusAfterSubmit = true;
+        
         private void OnValidate()
         {
             if (!manager) manager = GetComponentInParent<ChatManager>();
@@ -31,8 +32,15 @@ namespace IronMountain.Multiplayer.Chatroom
 
         private void Update()
         {
-            if (!inputField || !inputField.IsActive()) return;
-            if (Input.GetKeyDown(KeyCode.Return)) Submit();
+            if (!inputField) return;
+            if (inputField.IsActive() && Input.GetKeyDown(KeyCode.Return)) Submit();
+        }
+
+        private void Activate()
+        {
+            if (!inputField) return;
+            inputField.ActivateInputField();
+            inputField.Select();
         }
 
         public void Submit()
@@ -41,7 +49,7 @@ namespace IronMountain.Multiplayer.Chatroom
             string author = ClientsManager.LocalClient ? ClientsManager.LocalClient.DisplayName : string.Empty;
             manager.AddMessageServerRpc(author, inputField.text);
             inputField.text = string.Empty;
-            inputField.Select();
+            if (refocusAfterSubmit) Activate();
         }
     }
 }
